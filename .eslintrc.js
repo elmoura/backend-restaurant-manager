@@ -22,7 +22,8 @@ module.exports = {
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
     'class-methods-use-this': 'off',
-    'no-useless-constructor': 'off'
+    'no-useless-constructor': 'off',
+    'no-underscore-dangle': 'off'
   },
   settings: {
     'import/resolver': {

@@ -3,14 +3,14 @@ import { BaseUseCase } from '@libs/common';
 import {
   IOrganizationDataSource,
   ORGANIZATION_DATASOURCE_PROVIDER,
-} from '../datasources/types/organization-datasouce.type';
-import { Organization } from '../entities/organization';
+} from '../../datasources/types/organization-datasouce.type';
+import { Organization } from '../../entities/organization';
 import { CreateOrganizationInput } from './dto/create-organization.dto';
 
-export const CREATE_ORGANIZATION_UC_PROVIDER = 'CreateOrganizationUC';
+export const CREATE_ORGANIZATION_UC_PROVIDER = 'CreateOrganizationUseCase';
 
 @injectable()
-export class CreateOrganizationUC
+export class CreateOrganizationUseCase
   implements BaseUseCase<CreateOrganizationInput, Organization>
 {
   constructor(

@@ -1,24 +1,49 @@
-import { Container } from 'inversify';
-import { databaseConnectionModule } from '@libs/database';
 import {
+  CreateUserUseCase,
+  CREATE_USER_UC_PROVIDER,
   CreateOrganizationInput,
-  CreateOrganizationUC,
+  CreateOrganizationUseCase,
   CREATE_ORGANIZATION_UC_PROVIDER,
-  organizationsModule,
+  CreateUserInput,
 } from '@libs/organizations';
+import { container } from './container';
 
-const createOrgContainer = new Container();
-createOrgContainer.load(databaseConnectionModule);
-createOrgContainer.load(organizationsModule);
-
-const createOrgUseCase = createOrgContainer.get<CreateOrganizationUC>(
+const createOrgUseCase = container.get<CreateOrganizationUseCase>(
   CREATE_ORGANIZATION_UC_PROVIDER
 );
 
-const orgToCreate: CreateOrganizationInput = {
-  name: 'Cazé Lanches',
-  businessSegment: 'alimentação',
-  locations: [],
+const createUserUseCase = container.get<CreateUserUseCase>(
+  CREATE_USER_UC_PROVIDER
+);
+
+const createOrgWithContact = async () => {
+  const organizationPayload: CreateOrganizationInput = {
+    name: 'Cazé Lanches',
+    businessSegment: 'alimentação',
+    locations: [],
+  };
+
+  const createdOrg = await createOrgUseCase.execute(organizationPayload);
+
+  const organizationContact: CreateUserInput = {
+    organizationId: String(createdOrg._id),
+    email: 'yumoto.paidoteufilho@gmail.com',
+    firstName: 'Yumoto',
+    lastName: 'Pai do seu filho ne',
+    phoneNumber: '1399999999',
+  };
+
+  const createdUser = await createUserUseCase.execute(organizationContact);
+
+  return { createdOrg, createdUser };
 };
 
-createOrgUseCase.execute();
+createOrgWithContact()
+  .then((result) => {
+    console.log(result);
+    process.exit(0);
+  })
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });

@@ -1,21 +1,26 @@
 import { ContainerModule, interfaces } from 'inversify';
-import { BaseUseCase } from '@libs/common';
 import {
   IOrganizationDataSource,
   ORGANIZATION_DATASOURCE_PROVIDER,
 } from './datasources/types/organization-datasouce.type';
 import { OrganizationDataSource } from './datasources/organization.datasource';
 import {
-  CreateOrganizationUC,
+  CreateOrganizationUseCase,
   CREATE_ORGANIZATION_UC_PROVIDER,
 } from './usecases/create-org/create-organization.usecase';
-import { Organization } from './entities/organization';
-import { CreateOrganizationInput } from './usecases/create-org/dto/create-organization.dto';
 import { OrganizationUserDataSource } from './datasources/organization-user.datasource';
 import {
   IOrganizationUserDataSource,
   ORGANIZATION_USER_DATASOURCE_PROVIDER,
 } from './datasources/types/organization-user-datasouce.type';
+import {
+  CreateUserUseCase,
+  CREATE_USER_UC_PROVIDER,
+} from './usecases/create-user/create-user.usecase';
+import {
+  UpdateUserUseCase,
+  UPDATE_USER_UC_PROVIDER,
+} from './usecases/update-user/update-user.usecase';
 
 export const organizationsModule = new ContainerModule(
   (bind: interfaces.Bind) => {
@@ -23,12 +28,16 @@ export const organizationsModule = new ContainerModule(
       OrganizationDataSource
     );
 
-    bind<BaseUseCase<CreateOrganizationInput, Organization>>(
-      CREATE_ORGANIZATION_UC_PROVIDER
-    ).to(CreateOrganizationUC);
-
     bind<IOrganizationUserDataSource>(ORGANIZATION_USER_DATASOURCE_PROVIDER).to(
       OrganizationUserDataSource
     );
+
+    bind<CreateOrganizationUseCase>(CREATE_ORGANIZATION_UC_PROVIDER).to(
+      CreateOrganizationUseCase
+    );
+
+    bind<CreateUserUseCase>(CREATE_USER_UC_PROVIDER).to(CreateUserUseCase);
+
+    bind<UpdateUserUseCase>(UPDATE_USER_UC_PROVIDER).to(UpdateUserUseCase);
   }
 );

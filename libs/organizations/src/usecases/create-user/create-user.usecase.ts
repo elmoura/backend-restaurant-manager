@@ -1,4 +1,4 @@
-import { inject } from 'inversify';
+import { inject, injectable } from 'inversify';
 import { BaseUseCase } from '@libs/common';
 import {
   IOrganizationUserDataSource,
@@ -7,7 +7,10 @@ import {
 import { OrganizationUser } from '../../entities/organization-user';
 import { CreateUserInput } from './dto/create-user.dto';
 
-export class CreateUserUC
+export const CREATE_USER_UC_PROVIDER = 'CreateUserUseCase';
+
+@injectable()
+export class CreateUserUseCase
   implements BaseUseCase<CreateUserInput, OrganizationUser>
 {
   constructor(

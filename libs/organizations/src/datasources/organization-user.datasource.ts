@@ -36,12 +36,12 @@ export class OrganizationUserDataSource implements IOrganizationUserDataSource {
   async updateOne(
     userId: string,
     payload: Partial<OrganizationUser>
-  ): Promise<boolean> {
-    const result = await OrganizationUserModel.updateOne(
+  ): Promise<OrganizationUser | null> {
+    const result = await OrganizationUserModel.findOneAndUpdate(
       { _id: userId },
       payload
     );
 
-    return Boolean(result.matchedCount);
+    return result;
   }
 }

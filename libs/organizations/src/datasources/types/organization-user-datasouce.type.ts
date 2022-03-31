@@ -13,7 +13,7 @@ export interface IOrganizationUserDataSource {
   updateOne(
     userId: string,
     payload: Partial<OrganizationUser>
-  ): Promise<boolean>;
+  ): Promise<OrganizationUser | null>;
 }
 
 export const ORGANIZATION_USER_DATASOURCE_PROVIDER =

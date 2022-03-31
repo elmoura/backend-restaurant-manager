@@ -1,5 +1,5 @@
+import { inject, injectable } from 'inversify';
 import { BaseUseCase } from '@libs/common';
-import { inject } from 'inversify';
 import {
   IOrganizationUserDataSource,
   ORGANIZATION_USER_DATASOURCE_PROVIDER,
@@ -7,7 +7,10 @@ import {
 import { OrganizationUser } from '../../entities/organization-user';
 import { UpdateUserInput } from './dto/update-user.dto';
 
-export class UpdateUserUC
+export const UPDATE_USER_UC_PROVIDER = 'UpdateUserUseCase';
+
+@injectable()
+export class UpdateUserUseCase
   implements BaseUseCase<UpdateUserInput, OrganizationUser>
 {
   constructor(
@@ -15,7 +18,7 @@ export class UpdateUserUC
     private organizationUserDataSource: IOrganizationUserDataSource
   ) {}
 
-  execute(payload: UpdateUserInput): Promise<OrganizationUser> {
+  async execute(payload: UpdateUserInput): Promise<OrganizationUser> {
     const { organizationId, _id: userId } = payload;
 
     const userExists = this.organizationUserDataSource.findByIdAndOrg(
@@ -27,6 +30,16 @@ export class UpdateUserUC
       throw new Error(`User with ID "${userId}" does not exist.`);
     }
 
-    return this.organizationUserDataSource;
+    const result = await this.organizationUserDataSource.updateOne(userId, {
+      ...payload,
+      _id: userId,
+      organizationId,
+    });
+
+    if (!result) {
+      throw new Error('Error updating user.');
+    }
+
+    return result;
   }
 }
