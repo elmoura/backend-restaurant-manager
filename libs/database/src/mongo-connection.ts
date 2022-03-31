@@ -1,4 +1,6 @@
 import { config } from '@config/vars';
 import mongoose from 'mongoose';
 
-mongoose.connect(config.mongoUrl);
+export const getMongoConnection = async () => {
+  return mongoose.connect(config.mongoUrl);
+};

@@ -19,7 +19,10 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
-    'import/prefer-default-export': 'off'
+    'import/extensions': 'off',
+    'import/prefer-default-export': 'off',
+    'class-methods-use-this': 'off',
+    'no-useless-constructor': 'off'
   },
   settings: {
     'import/resolver': {

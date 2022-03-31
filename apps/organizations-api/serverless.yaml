@@ -1,0 +1,14 @@
+service:
+  name: organizations-api
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  # + provider options
+
+functions:
+  createOrganization:
+    handler: src/handlers/organzation.handler
+
+custom:
+  lalalal: alksnkjlwsnf

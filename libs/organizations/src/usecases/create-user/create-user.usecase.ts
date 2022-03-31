@@ -1,0 +1,33 @@
+import { inject } from 'inversify';
+import { BaseUseCase } from '@libs/common';
+import {
+  IOrganizationUserDataSource,
+  ORGANIZATION_USER_DATASOURCE_PROVIDER,
+} from '../../datasources/types/organization-user-datasouce.type';
+import { OrganizationUser } from '../../entities/organization-user';
+import { CreateUserInput } from './dto/create-user.dto';
+
+export class CreateUserUC
+  implements BaseUseCase<CreateUserInput, OrganizationUser>
+{
+  constructor(
+    @inject(ORGANIZATION_USER_DATASOURCE_PROVIDER)
+    private organizationUserDataSource: IOrganizationUserDataSource
+  ) {}
+
+  async execute(payload: CreateUserInput): Promise<OrganizationUser> {
+    const { email, organizationId } = payload;
+
+    const userAlreadyExists =
+      await this.organizationUserDataSource.findByEmailAndOrg(
+        email,
+        organizationId
+      );
+
+    if (userAlreadyExists) {
+      throw new Error(`User with e-mail "${email}" already exists`);
+    }
+
+    return this.organizationUserDataSource.createOne(payload);
+  }
+}
