@@ -1,0 +1,14 @@
+{
+    "name": "infra",
+    "engines": {
+        "node": "16.x"
+    },
+    "devDependencies": {
+        "@types/node": "^16.11.26"
+    },
+    "dependencies": {
+        "@pulumi/pulumi": "^3.0.0",
+        "@pulumi/aws": "^5.0.0",
+        "@pulumi/awsx": "^0.40.0"
+    }
+}

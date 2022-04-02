@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "create-org": "ts-node -r tsconfig-paths/register scripts/create-org"
   },
@@ -17,7 +20,7 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.93",
-    "@types/node": "^17.0.21",
+    "@types/node": "^16.11.26",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",
     "eslint": "^8.11.0",

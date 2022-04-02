@@ -18,6 +18,9 @@ export class OrganizationUser extends TimeStamps {
 
   @prop()
   email: string;
+
+  @prop()
+  password: string;
 }
 
 export const OrganizationUserModel = getModelForClass(OrganizationUser);

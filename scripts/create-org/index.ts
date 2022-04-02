@@ -1,10 +1,11 @@
+/* eslint-disable no-console */
 import {
+  CreateUserInput,
   CreateUserUseCase,
   CREATE_USER_UC_PROVIDER,
   CreateOrganizationInput,
   CreateOrganizationUseCase,
   CREATE_ORGANIZATION_UC_PROVIDER,
-  CreateUserInput,
 } from '@libs/organizations';
 import { container } from './container';
 
