@@ -3,12 +3,12 @@ import {
   IOrganizationDataSource,
   ORGANIZATION_DATASOURCE_PROVIDER,
 } from './datasources/types/organization-datasouce.type';
-import { OrganizationDataSource } from './datasources/organization.datasource';
+import { MongoOrganizationDataSource } from './datasources/mongo-organization.datasource';
 import {
   CreateOrganizationUseCase,
   CREATE_ORGANIZATION_UC_PROVIDER,
-} from './usecases/create-org/create-organization.usecase';
-import { OrganizationUserDataSource } from './datasources/organization-user.datasource';
+} from './usecases/organizations/create-org/create-organization.usecase';
+import { MongoOrganizationUserDataSource } from './datasources/mongo-organization-user.datasource';
 import {
   IOrganizationUserDataSource,
   ORGANIZATION_USER_DATASOURCE_PROVIDER,
@@ -16,20 +16,20 @@ import {
 import {
   CreateUserUseCase,
   CREATE_USER_UC_PROVIDER,
-} from './usecases/create-user/create-user.usecase';
+} from './usecases/organization-users/create-user/create-user.usecase';
 import {
   UpdateUserUseCase,
   UPDATE_USER_UC_PROVIDER,
-} from './usecases/update-user/update-user.usecase';
+} from './usecases/organization-users/update-user/update-user.usecase';
 
 export const organizationsModule = new ContainerModule(
   (bind: interfaces.Bind) => {
     bind<IOrganizationDataSource>(ORGANIZATION_DATASOURCE_PROVIDER).to(
-      OrganizationDataSource
+      MongoOrganizationDataSource
     );
 
     bind<IOrganizationUserDataSource>(ORGANIZATION_USER_DATASOURCE_PROVIDER).to(
-      OrganizationUserDataSource
+      MongoOrganizationUserDataSource
     );
 
     bind<CreateOrganizationUseCase>(CREATE_ORGANIZATION_UC_PROVIDER).to(

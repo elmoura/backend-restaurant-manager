@@ -32,6 +32,7 @@ const createOrgWithContact = async () => {
     firstName: 'Yumoto',
     lastName: 'Pai do seu filho ne',
     phoneNumber: '1399999999',
+    password: 'xesquedeleee',
   };
 
   const createdUser = await createUserUseCase.execute(organizationContact);

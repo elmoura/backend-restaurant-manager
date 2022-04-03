@@ -1,4 +1,5 @@
 import { injectable } from 'inversify';
+import { ModelType } from '@typegoose/typegoose/lib/types';
 import {
   OrganizationUser,
   OrganizationUserModel,
@@ -6,18 +7,26 @@ import {
 import { IOrganizationUserDataSource } from './types/organization-user-datasouce.type';
 
 @injectable()
-export class OrganizationUserDataSource implements IOrganizationUserDataSource {
+export class MongoOrganizationUserDataSource
+  implements IOrganizationUserDataSource
+{
+  private organizationUserRepository: ModelType<OrganizationUser>;
+
+  constructor() {
+    this.organizationUserRepository = OrganizationUserModel;
+  }
+
   async createOne(
     payload: Omit<OrganizationUser, '_id'>
   ): Promise<OrganizationUser> {
-    return OrganizationUserModel.create(payload);
+    return this.organizationUserRepository.create(payload);
   }
 
   async findByIdAndOrg(
     userId: string,
     organizationId: string
   ): Promise<OrganizationUser | null> {
-    return OrganizationUserModel.findOne({
+    return this.organizationUserRepository.findOne({
       _id: userId,
       organizationId,
     });
@@ -27,7 +36,7 @@ export class OrganizationUserDataSource implements IOrganizationUserDataSource {
     email: string,
     organizationId: string
   ): Promise<OrganizationUser | null> {
-    return OrganizationUserModel.findOne({
+    return this.organizationUserRepository.findOne({
       email,
       organizationId,
     });
@@ -37,11 +46,6 @@ export class OrganizationUserDataSource implements IOrganizationUserDataSource {
     userId: string,
     payload: Partial<OrganizationUser>
   ): Promise<OrganizationUser | null> {
-    const result = await OrganizationUserModel.findOneAndUpdate(
-      { _id: userId },
-      payload
-    );
-
-    return result;
+    return this.organizationUserRepository.findByIdAndUpdate(userId, payload);
   }
 }

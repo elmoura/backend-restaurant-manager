@@ -11,9 +11,6 @@ export class Organization extends TimeStamps {
   @prop()
   organizationRepresentantId?: string;
 
-  @prop()
-  businessSegment: string;
-
   @prop({ ref: () => OrganizationLocation })
   locations: Ref<OrganizationLocation>[];
 }

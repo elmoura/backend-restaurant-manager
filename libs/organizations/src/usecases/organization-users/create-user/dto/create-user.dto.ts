@@ -8,4 +8,6 @@ export class CreateUserInput {
   phoneNumber: string;
 
   email: string;
+
+  password: string;
 }
