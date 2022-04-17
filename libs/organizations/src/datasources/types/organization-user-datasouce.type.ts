@@ -10,10 +10,7 @@ export interface IOrganizationUserDataSource {
     userId: string,
     organizationId: string
   ): Promise<OrganizationUser | null>;
-  findByEmailAndOrg(
-    email: string,
-    organizationId: string
-  ): Promise<OrganizationUser | null>;
+  findByEmail(email: string): Promise<OrganizationUser | null>;
   findByEmailAndPassword(
     payload: UserLoginParams
   ): Promise<OrganizationUser | null>;

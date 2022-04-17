@@ -35,14 +35,8 @@ export class MongoOrganizationUserDataSource
     });
   }
 
-  async findByEmailAndOrg(
-    email: string,
-    organizationId: string
-  ): Promise<OrganizationUser | null> {
-    return this.organizationUserRepository.findOne({
-      email,
-      organizationId,
-    });
+  async findByEmail(email: string): Promise<OrganizationUser | null> {
+    return this.organizationUserRepository.findOne({ email });
   }
 
   async updateOne(

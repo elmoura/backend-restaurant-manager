@@ -2,7 +2,7 @@ import { getModelForClass, modelOptions, prop } from '@typegoose/typegoose';
 import { TimeStamps } from '@typegoose/typegoose/lib/defaultClasses';
 
 @modelOptions({
-  options: { customName: 'organization_user' },
+  options: { customName: 'organization_users' },
 })
 export class OrganizationUser extends TimeStamps {
   _id?: string;

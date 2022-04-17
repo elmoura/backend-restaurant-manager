@@ -18,21 +18,19 @@ export class CreateUserUseCase
   implements IBaseUseCase<CreateUserInput, OrganizationUser>
 {
   constructor(
-    @inject(ORGANIZATION_USER_DATASOURCE_PROVIDER)
-    private organizationUserDataSource: IOrganizationUserDataSource,
-
     @inject(CRYPTO_SERVICE_PROVIDER)
-    private cryptoService: ICryptoService
+    private cryptoService: ICryptoService,
+
+    @inject(ORGANIZATION_USER_DATASOURCE_PROVIDER)
+    public readonly organizationUserDataSource: IOrganizationUserDataSource
   ) {}
 
   async execute(payload: CreateUserInput): Promise<OrganizationUser> {
-    const { email, organizationId } = payload;
+    const { email } = payload;
 
-    const userAlreadyExists =
-      await this.organizationUserDataSource.findByEmailAndOrg(
-        email,
-        organizationId
-      );
+    const userAlreadyExists = await this.organizationUserDataSource.findByEmail(
+      email
+    );
 
     if (userAlreadyExists) {
       throw new Error(`User with e-mail "${email}" already exists`);
