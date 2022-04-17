@@ -4,7 +4,10 @@ import {
   OrganizationUser,
   OrganizationUserModel,
 } from '../entities/organization-user';
-import { IOrganizationUserDataSource } from './types/organization-user-datasouce.type';
+import {
+  IOrganizationUserDataSource,
+  UserLoginParams,
+} from './types/organization-user-datasouce.type';
 
 @injectable()
 export class MongoOrganizationUserDataSource
@@ -32,14 +35,8 @@ export class MongoOrganizationUserDataSource
     });
   }
 
-  async findByEmailAndOrg(
-    email: string,
-    organizationId: string
-  ): Promise<OrganizationUser | null> {
-    return this.organizationUserRepository.findOne({
-      email,
-      organizationId,
-    });
+  async findByEmail(email: string): Promise<OrganizationUser | null> {
+    return this.organizationUserRepository.findOne({ email });
   }
 
   async updateOne(
@@ -47,5 +44,12 @@ export class MongoOrganizationUserDataSource
     payload: Partial<OrganizationUser>
   ): Promise<OrganizationUser | null> {
     return this.organizationUserRepository.findByIdAndUpdate(userId, payload);
+  }
+
+  async findByEmailAndPassword({
+    email,
+    password,
+  }: UserLoginParams): Promise<OrganizationUser | null> {
+    return this.organizationUserRepository.findOne({ email, password });
   }
 }

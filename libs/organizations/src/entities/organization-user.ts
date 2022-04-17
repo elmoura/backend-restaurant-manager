@@ -1,8 +1,9 @@
-import { Entity } from '@libs/common';
-import { getModelForClass, prop } from '@typegoose/typegoose';
+import { getModelForClass, modelOptions, prop } from '@typegoose/typegoose';
 import { TimeStamps } from '@typegoose/typegoose/lib/defaultClasses';
 
-@Entity()
+@modelOptions({
+  options: { customName: 'organization_users' },
+})
 export class OrganizationUser extends TimeStamps {
   _id?: string;
 

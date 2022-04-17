@@ -4,11 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "engines": {
-    "node": "16.x"
+    "node": "14.x"
   },
   "scripts": {
     "build": "tsc",
     "test": "jest",
+    "lint": "eslint \"{apps,scripts,libs}/**/*.ts\" --fix",
     "create-org": "ts-node -r tsconfig-paths/register scripts/create-org"
   },
   "dependencies": {
@@ -35,6 +36,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.5.1",
     "prettier": "^2.5.1",
+    "serverless-plugin-typescript": "^2.1.2",
     "ts-jest": "^27.1.4",
     "ts-node-dev": "^1.1.8",
     "tsconfig-paths": "^3.14.1",

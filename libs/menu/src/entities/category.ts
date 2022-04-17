@@ -1,7 +1,7 @@
 import { getModelForClass, prop } from '@typegoose/typegoose';
 
 export class Category {
-  _id: string;
+  _id?: string;
 
   @prop()
   name: string;

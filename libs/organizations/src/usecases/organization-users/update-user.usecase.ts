@@ -3,8 +3,8 @@ import { IBaseUseCase } from '@libs/common';
 import {
   IOrganizationUserDataSource,
   ORGANIZATION_USER_DATASOURCE_PROVIDER,
-} from '../../../datasources/types/organization-user-datasouce.type';
-import { OrganizationUser } from '../../../entities/organization-user';
+} from '../../datasources/types/organization-user-datasouce.type';
+import { OrganizationUser } from '../../entities/organization-user';
 import { UpdateUserInput } from './dto/update-user.dto';
 
 export const UPDATE_USER_UC_PROVIDER = 'UpdateUserUseCase';

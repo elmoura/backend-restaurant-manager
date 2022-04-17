@@ -1,0 +1,14 @@
+service: organizations-api
+
+plugins:
+  - serverless-plugin-typescript
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+
+functions:
+  create-organization-with-user:
+    description: essa function cria a Organization junto com um usuário inicial
+    handler: apps/organizations-api/src/handlers/organizations/create-org-with-user.handler
