@@ -6,7 +6,7 @@ describe('CryptoService tests', () => {
   const cryptoService = new CryptoService();
 
   test('deve conseguir criptografar e descriptografar um dado mantendo seu valor original', async () => {
-    const testText = `
+    const text = `
     🤡ÅŤÅQŮĘ ĐØ§ PÅĽHÅÇØ§ ĽØĶØ🤡
 
     AGORA É NOIS QUE MANDA NESSA PORRA ☣☣☣👿
@@ -16,17 +16,17 @@ describe('CryptoService tests', () => {
     VØÇË§ FØŘÅM ÅŤÅČÅĐØ§ PËĽØ§ PÅĽHÅÇØ§ ĽØĶØ§ Ø§ ČØMËĐØŘË§ ĐË ÄĐMÎÑÎ§ŤŘÅĐØ 🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡 🤡🤡🤡🤡🤡🤡
     
     ̿̿ ̿̿ ̿̿ ̿'̿'\̵͇̿̿\з= 🤡 =ε/̵͇̿̿/’̿’̿ ̿ ̿̿ ̿̿ ̿̿
-    
-    ( . ) __// 🍆 \\__
+            ( . )
+         __// 🍆 \\__
     
     🤡PÅĽHÅÇØ§ ĽØĶØ🤡
     
     Ta-Em-CHoK kk❓⚡
     `;
 
-    const encryptedData = cryptoService.encrypt(testText);
+    const encryptedData = cryptoService.encrypt(text);
     const decryptedData = cryptoService.decrypt(encryptedData);
 
-    expect(decryptedData).toEqual(testText);
+    expect(decryptedData).toEqual(text);
   });
 });

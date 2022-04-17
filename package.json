@@ -9,6 +9,7 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
+    "test:changes": "jest --onlyChanged",
     "lint": "eslint \"{apps,scripts,libs}/**/*.ts\" --fix",
     "create-org": "ts-node -r tsconfig-paths/register scripts/create-org"
   },
