@@ -1,5 +1,9 @@
 import { Container } from 'inversify';
-import { organizationsModule } from '@libs/organizations';
+import {
+  IOrganizationDataSource,
+  ORGANIZATION_DATASOURCE_PROVIDER,
+} from '@libs/organizations';
+import { MongoOrganizationDataSource } from '@libs/organizations/src/datasources/mongo-organization.datasource';
 import { CreateOrganizationInput } from '../dto/create-organization.dto';
 import {
   CreateOrganizationUseCase,
@@ -13,7 +17,14 @@ describe('CreateOrganizationUseCase tests', () => {
 
   beforeAll(() => {
     const testContainer = new Container();
-    testContainer.load(organizationsModule);
+
+    testContainer
+      .bind<IOrganizationDataSource>(ORGANIZATION_DATASOURCE_PROVIDER)
+      .to(MongoOrganizationDataSource);
+
+    testContainer
+      .bind(CREATE_ORGANIZATION_UC_PROVIDER)
+      .to(CreateOrganizationUseCase);
 
     createOrganizationUseCase = testContainer.get(
       CREATE_ORGANIZATION_UC_PROVIDER
