@@ -49,6 +49,6 @@ export class CryptoService implements ICryptoService {
       decipher.final(),
     ]);
 
-    return decryptedData.toString('hex');
+    return decryptedData.toString();
   }
 }
