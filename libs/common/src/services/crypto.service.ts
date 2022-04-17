@@ -2,7 +2,9 @@ import { injectable } from 'inversify';
 import { createCipheriv, createDecipheriv } from 'crypto';
 import { getConfig } from '@config/vars';
 
-interface ICryptoService {
+export const CRYPTO_SERVICE_PROVIDER = 'CrytoService';
+
+export interface ICryptoService {
   encrypt(text: string): string;
   decrypt(params: string): string;
 }

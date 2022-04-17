@@ -1,4 +1,4 @@
-import { OrganizationLocation } from '../../../../entities/organization-location';
+import { OrganizationLocation } from '../../../entities/organization-location';
 
 export class CreateOrganizationInput {
   name: string;

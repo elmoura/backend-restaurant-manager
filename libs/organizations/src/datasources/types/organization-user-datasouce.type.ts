@@ -1,5 +1,10 @@
 import { OrganizationUser } from '../../entities/organization-user';
 
+export type UserLoginParams = {
+  email: string;
+  password: string;
+};
+
 export interface IOrganizationUserDataSource {
   findByIdAndOrg(
     userId: string,
@@ -8,6 +13,9 @@ export interface IOrganizationUserDataSource {
   findByEmailAndOrg(
     email: string,
     organizationId: string
+  ): Promise<OrganizationUser | null>;
+  findByEmailAndPassword(
+    payload: UserLoginParams
   ): Promise<OrganizationUser | null>;
   createOne(payload: Omit<OrganizationUser, '_id'>): Promise<OrganizationUser>;
   updateOne(

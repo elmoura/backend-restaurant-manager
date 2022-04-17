@@ -1,10 +1,14 @@
 import { inject, injectable } from 'inversify';
-import { IBaseUseCase } from '@libs/common';
+import {
+  CRYPTO_SERVICE_PROVIDER,
+  IBaseUseCase,
+  ICryptoService,
+} from '@libs/common';
 import {
   IOrganizationUserDataSource,
   ORGANIZATION_USER_DATASOURCE_PROVIDER,
-} from '../../../datasources/types/organization-user-datasouce.type';
-import { OrganizationUser } from '../../../entities/organization-user';
+} from '../../datasources/types/organization-user-datasouce.type';
+import { OrganizationUser } from '../../entities/organization-user';
 import { CreateUserInput } from './dto/create-user.dto';
 
 export const CREATE_USER_UC_PROVIDER = 'CreateUserUseCase';
@@ -15,7 +19,10 @@ export class CreateUserUseCase
 {
   constructor(
     @inject(ORGANIZATION_USER_DATASOURCE_PROVIDER)
-    private organizationUserDataSource: IOrganizationUserDataSource
+    private organizationUserDataSource: IOrganizationUserDataSource,
+
+    @inject(CRYPTO_SERVICE_PROVIDER)
+    private cryptoService: ICryptoService
   ) {}
 
   async execute(payload: CreateUserInput): Promise<OrganizationUser> {
@@ -31,6 +38,11 @@ export class CreateUserUseCase
       throw new Error(`User with e-mail "${email}" already exists`);
     }
 
-    return this.organizationUserDataSource.createOne(payload);
+    const encryptedPassword = this.cryptoService.encrypt(payload.password);
+
+    return this.organizationUserDataSource.createOne({
+      ...payload,
+      password: encryptedPassword,
+    });
   }
 }
