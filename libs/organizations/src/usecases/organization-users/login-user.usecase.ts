@@ -1,4 +1,4 @@
-import { IBaseUseCase } from '@libs/common';
+import { IBaseUseCase } from '@chefin/common';
 import { inject, injectable } from 'inversify';
 import {
   IOrganizationUserDataSource,

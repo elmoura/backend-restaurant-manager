@@ -1,0 +1,13 @@
+{
+  "name": "@chefin/menu",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "inversify": "^6.0.1",
+    "mongodb": "^4.4.1",
+    "mongoose": "^6.2.7",
+    "@typegoose/typegoose": "^9.7.0",
+    "@chefin/common": "^1.0.0"
+  }
+}

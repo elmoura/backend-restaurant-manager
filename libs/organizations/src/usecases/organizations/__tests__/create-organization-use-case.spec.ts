@@ -1,16 +1,16 @@
 import { Container } from 'inversify';
-import {
-  IOrganizationDataSource,
-  ORGANIZATION_DATASOURCE_PROVIDER,
-} from '@libs/organizations';
-import { MongoOrganizationDataSource } from '@libs/organizations/src/datasources/mongo-organization.datasource';
 import { CreateOrganizationInput } from '../dto/create-organization.dto';
 import {
   CreateOrganizationUseCase,
   CREATE_ORGANIZATION_UC_PROVIDER,
 } from '../create-organization.usecase';
+import {
+  IOrganizationDataSource,
+  ORGANIZATION_DATASOURCE_PROVIDER,
+} from '../../../datasources/types/organization-datasouce.type';
+import { MongoOrganizationDataSource } from '../../../datasources/mongo-organization.datasource';
 
-jest.mock('@libs/organizations/src/datasources/mongo-organization.datasource');
+jest.mock('../../../datasources/mongo-organization.datasource');
 
 describe('CreateOrganizationUseCase tests', () => {
   let createOrganizationUseCase: CreateOrganizationUseCase;

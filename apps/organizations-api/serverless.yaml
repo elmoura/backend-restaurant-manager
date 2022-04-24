@@ -1,14 +1,17 @@
-service: organizations-api
+service: chefin-organizations-api
 
 plugins:
   - serverless-plugin-typescript
+  - serverless-plugin-optimize
 
 provider:
   name: aws
   runtime: nodejs14.x
 
+package:
+  individually: true
 
 functions:
   create-organization-with-user:
     description: essa function cria a Organization junto com um usuário inicial
-    handler: apps/organizations-api/src/handlers/organizations/create-org-with-user.handler
+    handler: src/handlers/organizations/create-org-with-user.handler

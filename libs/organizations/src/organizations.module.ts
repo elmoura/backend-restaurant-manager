@@ -3,7 +3,7 @@ import {
   CryptoService,
   CRYPTO_SERVICE_PROVIDER,
   ICryptoService,
-} from '@libs/common';
+} from '@chefin/common';
 import {
   IOrganizationDataSource,
   ORGANIZATION_DATASOURCE_PROVIDER,

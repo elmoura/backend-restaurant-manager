@@ -5,10 +5,7 @@
     "emitDecoratorMetadata": true,
     "module": "commonjs",
     "baseUrl": "./",
-    "paths": {
-      "@config/*": ["./config/*"],
-      "@libs/*": ["./libs/*"]
-    },
+    "paths": {},
     "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -21,6 +18,8 @@
     "skipLibCheck": true
   },
   "exclude": [
-    "infrastructure/**"
+    "infrastructure/**",
+    "**/*.spec.ts",
+    "**/*.test.ts"
   ]
 }

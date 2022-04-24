@@ -1,23 +1,21 @@
 import { Container } from 'inversify';
 import {
-  IOrganizationUserDataSource,
-  ORGANIZATION_USER_DATASOURCE_PROVIDER,
-} from '@libs/organizations';
-import {
   CryptoService,
   ICryptoService,
   CRYPTO_SERVICE_PROVIDER,
-} from '@libs/common';
-import { MongoOrganizationUserDataSource } from '@libs/organizations/src/datasources/mongo-organization-user.datasource';
+} from '@chefin/common';
 import {
   CreateUserUseCase,
   CREATE_USER_UC_PROVIDER,
 } from '../create-user.usecase';
 import { CreateUserInput } from '../dto/create-user.dto';
+import {
+  IOrganizationUserDataSource,
+  ORGANIZATION_USER_DATASOURCE_PROVIDER,
+} from '../../../datasources/types/organization-user-datasouce.type';
+import { MongoOrganizationUserDataSource } from '../../../datasources/mongo-organization-user.datasource';
 
-jest.mock(
-  '@libs/organizations/src/datasources/mongo-organization-user.datasource'
-);
+jest.mock('../../../datasources/mongo-organization-user.datasource');
 
 describe('CreateUserUseCase tests', () => {
   let createUserUseCase: CreateUserUseCase;

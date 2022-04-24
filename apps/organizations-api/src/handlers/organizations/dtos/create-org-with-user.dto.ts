@@ -3,7 +3,7 @@ import {
   CreateUserInput,
   Organization,
   OrganizationUser,
-} from '@libs/organizations';
+} from '@chefin/organizations';
 
 export interface CreateOrgWithUserInput extends CreateOrganizationInput {
   user: CreateUserInput;

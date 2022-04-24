@@ -1,5 +1,5 @@
 import { inject, injectable } from 'inversify';
-import { IBaseUseCase } from '@libs/common';
+import { IBaseUseCase } from '@chefin/common';
 import {
   IOrganizationDataSource,
   ORGANIZATION_DATASOURCE_PROVIDER,

@@ -1,12 +1,11 @@
-import 'reflect-metadata';
 import { Container } from 'inversify';
-import { databaseConnectionModule } from '@libs/database';
-import { organizationsModule } from '@libs/organizations';
+import { getMongoConnection } from '@chefin/config';
+import { organizationsModule } from '@chefin/organizations';
 
 const dependenciesContainer = new Container();
 
 const setupApplicationDependecies = async (): Promise<void> => {
-  await dependenciesContainer.loadAsync(databaseConnectionModule);
+  await getMongoConnection();
   await dependenciesContainer.load(organizationsModule);
 };
 

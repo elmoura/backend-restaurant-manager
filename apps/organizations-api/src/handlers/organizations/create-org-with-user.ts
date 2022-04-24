@@ -1,10 +1,10 @@
-import { LambdaResponse } from '@libs/common';
+import { LambdaResponse } from '@chefin/common';
 import {
   CreateOrganizationUseCase,
   CREATE_ORGANIZATION_UC_PROVIDER,
   CreateUserUseCase,
   CREATE_USER_UC_PROVIDER,
-} from '@libs/organizations';
+} from '@chefin/organizations';
 import { APIGatewayEvent } from 'aws-lambda';
 import { dependenciesContainer } from '../../container';
 import {

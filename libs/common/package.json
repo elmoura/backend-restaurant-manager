@@ -1,0 +1,10 @@
+{
+  "name": "@chefin/common",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@chefin/config": "^1.0.0",
+    "inversify": "^6.0.1"
+  }
+}

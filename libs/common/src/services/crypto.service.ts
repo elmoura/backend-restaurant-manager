@@ -1,6 +1,6 @@
 import { injectable } from 'inversify';
+import { getConfig } from '@chefin/config';
 import { createCipheriv, createDecipheriv } from 'crypto';
-import { getConfig } from '@config/vars';
 
 export const CRYPTO_SERVICE_PROVIDER = 'CrytoService';
 

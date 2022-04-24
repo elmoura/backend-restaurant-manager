@@ -1,9 +1,11 @@
-import { IBaseUseCase } from '@libs/common';
-import { Category } from '../../entities/category';
-import { CreateCategoryDto } from './dto/create-category.dto';
+// import { IBaseUseCase } from '@chefin/common';
+// import { injectable } from 'inversify';
+// import { Category } from '../../entities/category';
+// import { CreateCategoryDto } from './dto/create-category.dto';
 
-export class CreateCategoryUseCase
-  implements IBaseUseCase<CreateCategoryDto, Category>
-{
-  execute(input: CreateCategoryDto): Promise<Category> {}
-}
+// @injectable()
+// export class CreateCategoryUseCase
+//   implements IBaseUseCase<CreateCategoryDto, Category>
+// {
+//   execute(input: CreateCategoryDto): Promise<Category> {}
+// }

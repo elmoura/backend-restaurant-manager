@@ -1,4 +1,4 @@
-import { IPaginationOptions } from '@libs/common';
+import { IPaginationOptions } from '@chefin/common';
 import { Category } from '../../entities/category';
 
 export interface ICategoryDataSource {

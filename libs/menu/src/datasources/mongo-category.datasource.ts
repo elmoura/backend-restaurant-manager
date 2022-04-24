@@ -1,5 +1,5 @@
 import { injectable } from 'inversify';
-import { IPaginationOptions } from '@libs/common';
+import { IPaginationOptions } from '@chefin/common';
 import { ModelType } from '@typegoose/typegoose/lib/types';
 import { Category, CategoryModel } from '../entities/category';
 import { ICategoryDataSource } from './types/category-datasource.type';
