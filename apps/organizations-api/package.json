@@ -3,15 +3,20 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "deploy": "tsc && serverless deploy"
+  },
   "dependencies": {
-    "inversify": "^6.0.1",
-    "aws-lambda": "^1.0.7",
-    "@chefin/config": "^1.0.0",
     "@chefin/common": "^1.0.0",
-    "@chefin/organizations": "^1.0.0"
+    "@chefin/config": "^1.0.0",
+    "@chefin/organizations": "^1.0.0",
+    "aws-lambda": "^1.0.7",
+    "inversify": "^6.0.1"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.93",
+    "serverless-offline": "^8.3.1",
+    "serverless-plugin-monorepo": "^0.11.0",
     "serverless-plugin-optimize": "^4.2.1-rc.1",
     "serverless-plugin-typescript": "^2.1.2"
   }

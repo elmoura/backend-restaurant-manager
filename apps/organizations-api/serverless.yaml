@@ -1,17 +1,25 @@
 service: chefin-organizations-api
 
 plugins:
+  - serverless-offline
   - serverless-plugin-typescript
-  - serverless-plugin-optimize
+  - serverless-plugin-monorepo
+  # - serverless-plugin-optimize
+
+# package:
+#   individually: true
 
 provider:
   name: aws
   runtime: nodejs14.x
-
-package:
-  individually: true
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
 
 functions:
-  create-organization-with-user:
-    description: essa function cria a Organization junto com um usuário inicial
+  createOrganizationWithUser:
+    description: Cria a Organization junto com um usuário inicial
     handler: src/handlers/organizations/create-org-with-user.handler
+    events:
+      - http:
+          method: POST
+          path: /organizations
